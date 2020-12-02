@@ -1,0 +1,55 @@
+﻿@model Dev.App.ViewModels.ProspectViewModel
+
+<form asp-action="AddOrEdit" asp-controller="Customers" id="form-customer" onsubmit="return PostCustomer(this);" autocomplete="off">
+    <vc:summary></vc:summary>
+
+    <div class="row mb-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <label asp-for="Customer.CNPJ" class="font-weight-bold control-label"></label>
+            <input asp-for="Customer.CNPJ" class="form-control" />
+            <span asp-validation-for="Customer.CNPJ" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <label asp-for="Customer.Name" class="font-weight-bold control-label"></label>
+            <input asp-for="Customer.Name" class="form-control" />
+            <span asp-validation-for="Customer.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <label asp-for="Customer.Email" class="font-weight-bold control-label"></label>
+            <input asp-for="Customer.Email" class="form-control" />
+            <span asp-validation-for="Customer.Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <label class="font-weight-bold control-label" asp-for="Customer.SegmentId"></label>
+            <div class="ui selection dropdown form-control">
+                <input type="hidden" asp-for="Customer.SegmentId" />
+                <i class="dropdown icon"></i>
+                <div class="default text">Selecione</div>
+                <div class="menu">
+                    <div class="ui icon search input">
+                        <input type="text" placeholder="Search tags...">
+                    </div>
+                    @foreach (var item in Model.Customer.Segments)
+                    {
+                        <div class="item" data-value="@item.Id">@item.Name</div>
+                    }
+                </div>
+            </div>
+            <span asp-validation-for="Customer.SegmentId" class="text-danger"></span>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    inicializaDropDown();
+    BuscaCliente();
+
+</script>
+

@@ -1,0 +1,112 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #f9f9f9;
+}
+
+body, input, label, td, th, a, li {
+    font-family: 'Open Sans' !important;
+}
+
+.font-sm, th, td {
+    font-size: 0.8rem !important;
+}
+
+.font-custom{
+    font-size: 0.9rem !important;
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.input-validation-error {
+    border-color: #dc3545 !important;
+}
+
+.form-control::-webkit-input-placeholder {/* Chrome/Opera/Safari */
+    color: rgba(191, 191, 191, 0.87);
+}
+
+.form-control::-moz-placeholder { /* Firefox 19+ */
+    color: rgba(191, 191, 191, 0.87);
+}
+
+.form-control:-ms-input-placeholder { /* IE 10+ */
+    color: rgba(191, 191, 191, 0.87);
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+    color: rgba(191, 191, 191, 0.87);
+}
+
+.grey.inverted {
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.grey.inverted:hover {
+    color: white !important;
+}
+
+/*.ui.fluid.dropdown:active {
+    border-color: #80bdff !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+.ui.fluid.dropdown:hover {
+    border-color: #80bdff !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}*/

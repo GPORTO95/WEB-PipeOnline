@@ -1,0 +1,213 @@
+﻿@model IEnumerable<Dev.App.ViewModels.ProspectViewModel>
+
+@{ 
+    int countLos = Model.Where(p => p.Status == "LOS").Count();
+    int countWin = Model.Where(p => p.Status == "WIN").Count();
+    int countWinLos = countWin + countLos;
+
+    double somaWinLos = Model.Where(p => p.Status == "WIN").Sum(x => x.ValueSold.Value) + Model.Where(p => p.Status == "LOS").Sum(x => x.ValueSold.Value);
+    double somaWin = Model.Where(x => x.Status == "WIN").Sum(x => x.ValueSold.Value);
+
+    int conversaoEmPorcentagem = Convert.ToInt32(((double)countWin / (countWinLos == 0 ? 0.01 : countWinLos)) * 100);
+    int conversaoEmReais = Convert.ToInt32((((double)somaWin / (somaWinLos == 0 ? 0.01 : somaWinLos)) * 100));
+    int ticketMedio = Convert.ToInt32(((double)somaWin / (countWin == 0 ? 0.01 : countWin)) / 1000);
+    
+    string classePorcentagem = (conversaoEmPorcentagem >= 50 ? "bg-success" : "bg-danger");
+    string classeReais = (conversaoEmReais >= 50 ? "bg-success" : "bg-danger");
+}
+
+<div class="card-deck mb-3">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8">
+                    <h5 class="card-title text-muted font-custom mb-0">CONVERSÃO EM #</h5>
+                </div>
+                <div class="col-4">
+                    <div class="progress rounded-0 mt-1" style="height: 4px;">
+                        <div class="progress-bar @classePorcentagem" role="progressbar" style="width: @(conversaoEmPorcentagem)%" aria-valuenow="@(conversaoEmPorcentagem)" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="card-text text-center mt-0">
+                @(conversaoEmPorcentagem)%
+            </h2>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8">
+                    <label class="card-title text-muted font-custom mb-0">CONVERSÃO EM R$</label>
+                </div>
+                <div class="col-4">
+                    <div class="progress rounded-0 mt-1" style="height: 4px;">
+                        <div class="progress-bar @classeReais" role="progressbar" style="width: @(conversaoEmReais)%" aria-valuenow="@(conversaoEmReais)" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="card-text text-center mt-0">
+                @(conversaoEmReais)%
+            </h2>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <label class="card-title text-muted font-custom mb-0">TICKET MÉDIO</label>
+            <h2 class="card-text text-center mt-0">@(ticketMedio)K</h2>
+        </div>
+    </div>
+</div>
+
+<div class="card-group">
+    <div class="card">
+        <div class="card-body text-center">
+            <h5 class="card-title font-weight-bold mb-0">@Model.Count()</h5>
+            <p class="card-text text-muted"><small>PSPs</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <h5 class="card-title font-weight-bold mb-0">@(Model.Where(x => x.Status == "BRF").Sum(x => x.ValueSold) / 1000)K</h5>
+            <p class="card-text text-muted"><small>@Model.Where(x => x.Status == "BRF").Count() Brienfings</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <h5 class="card-title font-weight-bold mb-0">@(Model.Where(x => x.Status == "PRO").Sum(x => x.ValueSold) / 1000)K</h5>
+            <p class="card-text text-muted"><small>@Model.Where(x => x.Status == "PRO").Count() Propostas</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <h5 class="card-title font-weight-bold mb-0">@(Model.Where(x => x.Status == "WIN").Sum(x => x.ValueSold) / 1000)K</h5>
+            <p class="card-text text-muted"><small>@Model.Where(x => x.Status == "WIN").Count() Ganhos</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <h5 class="card-title font-weight-bold mb-0">@(Model.Where(x => x.Status == "LOS").Sum(x => x.ValueSold) / 1000)K</h5>
+            <p class="card-text text-muted"><small>@Model.Where(x => x.Status == "LOS").Count() Perdidos</small></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <h5 class="card-title font-weight-bold mb-0">@(Model.Where(x => x.Status == "NOG").Sum(x => x.ValueSold) / 1000)K</h5>
+            <p class="card-text text-muted"><small>@Model.Where(x => x.Status == "NOG").Count() No Go</small></p>
+        </div>
+    </div>
+</div>
+
+
+
+<table class="ui basic table table-hover bg-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.NameBranch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPsp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Valor estimado
+            </th>
+            <th>
+                Valor proposta
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValueSold)
+            </th>
+            <th>
+                C°
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @switch (item.Company.IdCompany)
+                {
+                    case "02":
+                        <label class="ui label violet mini">@item.Company.NameBranch</label>
+                        break;
+                    case "06":
+                        <label class="ui label brown mini">@item.Company.NameBranch</label>
+                        break;
+                    default:
+                        <label class="ui label grey mini">@item.Company.NameBranch</label>
+                        break;
+                }
+            </td>
+            <td class="text-truncate" style="max-width:14rem;" title="@item.Customer.Name">
+                @Html.DisplayFor(modelItem => item.Customer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPsp)
+            </td>
+            <td class="text-truncate" style="max-width:14rem;" title="@item.Name">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.ConvertDoubleToReal(item.ValueEstimated)
+            </td>
+            <td>
+                @item.ConvertDoubleToReal(item.ValueProposal)
+            </td>
+            <td>
+                @item.ConvertDoubleToReal(item.ValueSold)
+            </td>
+            <td class="text-center">
+                @if (item.Temperature == 1)
+                {
+                    <i class="fas fa-thermometer-full fa-2x text-danger"></i>
+                }
+                else if (item.Temperature == 2)
+                {
+                    <i class="fas fa-thermometer-half fa-2x text-warning"></i>
+                }
+                else if (item.Temperature == 3)
+                {
+                    <i class="fas fa-thermometer-empty fa-2x text-primary"></i>
+                }
+            </td>
+            <td>
+                <div class="ui icon top left pointing dropdown basic button mini compact">
+                    <i class="ellipsis horizontal icon text-primary"></i>
+                    <div class="menu">
+                        <div class="item">
+                            <a asp-action="AddOrEdit" asp-route-id="@item.Id" class="font-sm text-uppercase font-weight-bold text-dark">
+                                <i class="edit icon text-primary"></i>
+                                Editar
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="font-sm text-uppercase font-weight-bold text-dark">
+                                <i class="search icon text-warning"></i>
+                                Detalhes
+                            </a>
+                        </div>
+                        <div class="item" supress-by-claim-name="Prospect" supress-by-claim-value="Excluir">
+                            <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this);" class="d-inline" autocomplete="off">
+                                <button type="submit" class="font-sm text-uppercase font-weight-bold text-dark btn btn-sm pl-0">
+                                    <i class="trash alternate icon text-danger"></i>
+                                    Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

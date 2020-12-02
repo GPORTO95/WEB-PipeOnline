@@ -1,0 +1,143 @@
+﻿@model Dev.App.ViewModels.ProspectListViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<vc:summary></vc:summary>
+<div class="row mb-3 text-right">
+    <div class="col-12">
+        <a asp-action="AddOrEdit" class="ui teal button tiny">
+            Adicione um novo PSP <i class="icon plus circle mr-0 ml-1"></i>
+        </a>
+    </div>
+</div>
+
+
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form class="form-group mb-0" asp-action="SearchProspects" onsubmit="return filtraProjetos(this);" autocomplete="off">
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                    <label class="font-weight-bold control-label" asp-for="CustomerIds"></label>
+                    <div class="ui selection dropdown form-control multiple">
+                        <input type="hidden" asp-for="CustomerIds" multiple="" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Customers)
+                            {
+                                <div class="item" data-value="@item.Id">@item.Name</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label asp-for="Types" class="font-weight-bold control-label"></label>
+                    <div class="ui selection dropdown form-control multiple">
+                        <input type="hidden" asp-for="Types" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="item" data-value="1">Projeto</div>
+                            <div class="item" data-value="2">Recorrente</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label asp-for="Status" class="font-weight-bold control-label"></label>
+                    <div class="ui selection dropdown form-control multiple" id="list_status">
+                        <input type="hidden" asp-for="Status" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="item opt-status" data-value="LEA">Lead</div>
+                            <div class="item opt-status" data-value="BRF">Briefing</div>
+                            <div class="item opt-status" data-value="NOG">Nogo</div>
+                            <div class="item opt-status" data-value="PRO">Proposta</div>
+                            <div class="item opt-status" data-value="WIN">Ganhamos</div>
+                            <div class="item opt-status" data-value="LOS">Perdemos</div>
+                            <div class="item opt-status" data-value="CAN">Cancelado</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label class="font-weight-bold control-label" asp-for="EmployeeIds"></label>
+                    <div class="ui selection dropdown form-control multiple">
+                        <input type="hidden" asp-for="EmployeeIds" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Employees)
+                            {
+                                <div class="item" data-value="@item.Id">@item.Name</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label asp-for="DateOpening" class="font-weight-bold control-label"></label>
+                    <input asp-for="DateOpening" type="text" class="form-control date-range-mask bg-white" placeholder="dd/mm/aaaa até dd/mm/aaaa" />
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label asp-for="Temperatures" class="font-weight-bold control-label"></label>
+                    <div class="ui selection dropdown form-control multiple">
+                        <input type="hidden" asp-for="Temperatures" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="item" data-value="1">
+                                <i class="icon thermometer full text-danger"></i>
+                                Quente
+                            </div>
+                            <div class="item" data-value="2">
+                                <i class="icon thermometer half text-warning"></i>
+                                Morno
+                            </div>
+                            <div class="item" data-value="3">
+                                <i class="icon thermometer empty text-primary"></i>
+                                Frio
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row float-right">
+                <div class="col-12">
+                    <button type="submit" class="tiny ui black inverted button">
+                        <i class="icon filter"></i>
+                        Aplicar filtros
+                    </button>
+                    <a asp-controller="projetos" asp-action="lista-de-projetos" class="tiny ui grey inverted button">
+                        <i class="icon eraser"></i>
+                        Limpar filtros
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@*</div>
+    </div>*@
+
+<div id="lista-html">
+    @await Html.PartialAsync("_Lista", Model.ProspectViewModels)
+</div>
+
+@section Scripts {
+    <script>
+         $(document).ready(function () {
+           if('@ViewBag.Mensagem' != "") {
+              showInToast('success', '@ViewBag.Mensagem');
+             }
+        });
+    </script>
+}

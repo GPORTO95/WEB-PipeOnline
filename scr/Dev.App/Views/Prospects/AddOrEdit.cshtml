@@ -1,0 +1,601 @@
+﻿@model Dev.App.ViewModels.ProspectViewModel
+
+@{
+    ViewData["Title"] = "Adicionar";
+}
+
+<div class="card mt-5">
+    <div class="card-header bg-white">
+        <h3>
+            Formulário de @(Model.Id == null || Model.Id == Guid.Empty ? "Criação" : $"Edição - {Model.IdPsp} ")
+        </h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="AddOrEdit" id="form-prospect">
+            <vc:summary></vc:summary>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="IdPsp" />
+            <!--Cadastro-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Cadastro</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label class="font-weight-bold control-label" asp-for="CustomerId"></label>
+                    <a asp-controller="Customers" asp-action="AddOrEdit" data-modal="" supress-by-claim-name="Customer" supress-by-claim-value="Adicionar" data-tooltip="Adicionar um novo cliente" data-inverted="">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                    <input id="txtCustomer" class="form-control" placeholder="Selecione" value="@Model.Customers.Where(x => x.Id.ToString() == Model.CustomerId.ToString()).Select(x => x.Name).FirstOrDefault()" />
+                    <input type="hidden" asp-for="CustomerId" />
+                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label class="font-weight-bold control-label" asp-for="CompanyId"></label>
+                    <div class="ui selection dropdown form-control">
+                        <input type="hidden" asp-for="CompanyId" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Companies)
+                            {
+                                <div class="item" data-value="@item.Id">@item.NameCompany - @item.NameBranch</div>
+                            }
+                        </div>
+                    </div>
+                    <span asp-validation-for="CompanyId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label asp-for="Name" class="font-weight-bold control-label"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Digite o nome do PSP" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label class="font-weight-bold control-label" asp-for="CategoryId"></label>
+                    <div class="ui selection dropdown form-control">
+                        <input type="hidden" asp-for="CategoryId" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Categories)
+                            {
+                                <div class="item" data-value="@item.Id">@item.Name</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label asp-for="Type" class="font-weight-bold control-label"></label>
+                    <div class="ui selection dropdown form-control">
+                        <input type="hidden" asp-for="Type" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="item" data-value="1">Projeto</div>
+                            <div class="item" data-value="2">Recorrente</div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                    <label asp-for="ProActive" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="ProActive" id="chkProActive1" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="chkProActive1">Sim</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="ProActive" id="chkProActive2" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="chkProActive2">Não</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="ProActive" class="text-danger"></span>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="International" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="International" id="chkIternacioinal1" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="chkIternacioinal1">Sim</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="International" id="chkIternacioinal2" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="chkIternacioinal2">Não</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="International" class="text-danger"></span>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-5 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="Competition" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="Competition" id="chkCompetition1" value="1" class="custom-control-input" onchange="bloqueiaCampoConcorrentes()">
+                        <label class="custom-control-label" for="chkCompetition1">Sim</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="Competition" id="chkCompetition2" value="2" class="custom-control-input" onchange="bloqueiaCampoConcorrentes()">
+                        <label class="custom-control-label" for="chkCompetition2">Não</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="Competition" class="text-danger"></span>
+                </div>
+                <div class="col-lg-5 col-md-8 col-sm-8 col-7 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    @*<label asp-for="NameCompetitors" class="font-weight-bold control-label"></label>
+        <input asp-for="NameCompetitors" class="form-control" />
+        <span asp-validation-for="NameCompetitors" class="text-danger"></span>*@
+                    <label class="font-weight-bold control-label" asp-for="NameCompetitors"></label>
+                    <div class="ui fluid multiple search selection dropdown small">
+                        <input type="hidden" asp-for="NameCompetitors" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Digite os concorrentes</div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span asp-validation-for="NameCompetitors" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Fases-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Fase/Status/Razões</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <label asp-for="PhaseProspect" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="PhaseProspect" id="chkPhase1" value="1" class="custom-control-input" onchange="bloqueiaOpcoesStatus(true)">
+                        <label class="custom-control-label" for="chkPhase1">Lead</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="PhaseProspect" id="chkPhase2" value="2" class="custom-control-input" onchange="bloqueiaOpcoesStatus(true)">
+                        <label class="custom-control-label" for="chkPhase2">Avaliação</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="PhaseProspect" id="chkPhase3" value="3" class="custom-control-input" onchange="bloqueiaOpcoesStatus(true)">
+                        <label class="custom-control-label" for="chkPhase3">Proposta</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="PhaseProspect" id="chkPhase4" value="4" class="custom-control-input" onchange="bloqueiaOpcoesStatus(true)">
+                        <label class="custom-control-label" for="chkPhase4">Aprovação</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="PhaseProspect" class="text-danger"></span>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label asp-for="AutomaticPhase" class="font-weight-bold control-label"></label>
+                    <input asp-for="AutomaticPhase" class="form-control" disabled />
+                    <span asp-validation-for="AutomaticPhase" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <label asp-for="Status" class="font-weight-bold control-label"></label>
+                    <div class="ui selection dropdown form-control" id="list_status">
+                        <input type="hidden" asp-for="Status" onchange="bloqueiaOpcoesRazao(true)" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="item opt-status" data-value="LEA">Lead</div>
+                            <div class="item opt-status" data-value="BRF">Briefing</div>
+                            <div class="item opt-status" data-value="NOG">Nogo</div>
+                            <div class="item opt-status" data-value="PRO">Proposta</div>
+                            <div class="item opt-status" data-value="WIN">Ganhamos</div>
+                            <div class="item opt-status" data-value="LOS">Perdemos</div>
+                            <div class="item opt-status" data-value="CAN">Cancelado</div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="AutomaticStatus" class="font-weight-bold control-label"></label>
+                    <input asp-for="AutomaticStatus" class="form-control" disabled />
+                    <span asp-validation-for="AutomaticStatus" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3 opt-proposta" id="row-temperature">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label asp-for="Temperature" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="Temperature" id="chkTemperature1" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="chkTemperature1">Quente</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="Temperature" id="chkTemperature2" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="chkTemperature2">Morno</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="Temperature" id="chkTemperature3" value="3" class="custom-control-input">
+                        <label class="custom-control-label" for="chkTemperature3">Frio</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="Temperature" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3 row-razoes">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12 div-razao">
+                    <label asp-for="Reason" class="font-weight-bold control-label"></label>
+                    <div class="ui selection dropdown form-control list_razoes">
+                        <input type="hidden" asp-for="Reason" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="item opt-nog" data-value="1">Escopo Incompativel</div>
+                            <div class="item opt-nog" data-value="2">Pouco Tempo</div>
+                            <div class="item opt-nog" data-value="3">Pouca Verba</div>
+                            <div class="item opt-nog" data-value="4">Muitos Concorrentes</div>
+                            <div class="item opt-aprov" data-value="5">Preco</div>
+                            <div class="item opt-aprov" data-value="6">Tecnica</div>
+                            <div class="item opt-aprov" data-value="7">Preco e Tecnica</div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Reason" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3 div-motivo">
+                    <label asp-for="ReasonText" class="font-weight-bold control-label"></label>
+                    <input asp-for="ReasonText" class="form-control" />
+                    <span asp-validation-for="ReasonText" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Time-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Time</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                    <label class="font-weight-bold control-label" asp-for="EmployeeId"></label>
+                    <div class="ui selection dropdown mt-1 form-control">
+                        <input type="hidden" asp-for="EmployeeId" />
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Employees)
+                            {
+                                <div class="item" data-value="@item.Id">@item.Name</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label class="font-weight-bold control-label" asp-for="ProspectEmployeeId"></label>
+                    <div class="ui selection dropdown mt-1 form-control multiple">
+                        <input type="hidden" asp-for="ProspectEmployeeId" />
+                        <span asp-validation-for="ProspectEmployeeId" class="text-danger"></span>
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Employees)
+                            {
+                                <div class="item" data-value="@item.Id">@item.Name</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                    @*<label asp-for="Interlocutor" class="font-weight-bold control-label"></label>
+        <input asp-for="Interlocutor" class="form-control" />
+        <span asp-validation-for="Interlocutor" class="text-danger"></span>*@
+                    <label class="font-weight-bold control-label" asp-for="Interlocutor"></label>
+                    <div class="ui fluid multiple search selection dropdown small">
+                        <input type="hidden" asp-for="Interlocutor" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Digite os interlocutores</div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span asp-validation-for="Interlocutor" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    @*<label asp-for="Decision" class="font-weight-bold control-label"></label>
+        <input asp-for="Decision" class="form-control" />
+        <span asp-validation-for="Decision" class="text-danger"></span>*@
+                    <label class="font-weight-bold control-label" asp-for="Decision"></label>
+                    <div class="ui fluid multiple search selection dropdown small">
+                        <input type="hidden" asp-for="Decision" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Digite os decisores</div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span asp-validation-for="Decision" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Datas-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Datas</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label asp-for="Opening" class="font-weight-bold control-label"></label>
+                    <input asp-for="Opening" class="form-control" readonly />
+                    <span asp-validation-for="Opening" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="FirstBriefing" class="font-weight-bold control-label"></label>
+                    <input asp-for="FirstBriefing" type="text" class="form-control date-mask bg-white" />
+                    <span asp-validation-for="FirstBriefing" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="FirstProposal" class="font-weight-bold control-label"></label>
+                    <input asp-for="FirstProposal" type="text" class="form-control date-mask bg-white" />
+                    <span asp-validation-for="FirstProposal" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label asp-for="ExpectedSale" class="font-weight-bold control-label"></label>
+                    <input asp-for="ExpectedSale" type="text" class="form-control date-mask bg-white" />
+                    <span asp-validation-for="ExpectedSale" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="DeliveryJob" class="font-weight-bold control-label"></label>
+                    <input asp-for="DeliveryJob" type="text" class="form-control date-mask bg-white" />
+                    <span asp-validation-for="DeliveryJob" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="FirstSale" class="font-weight-bold control-label"></label>
+                    <input asp-for="FirstSale" class="form-control" readonly />
+                    <span asp-validation-for="FirstSale" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Valores-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Valores</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <label asp-for="ValueEstimated" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueEstimated" value="@Model.ConvertDoubleToReal(Model.ValueEstimated)" class="form-control money-mask" placeholder="R$ 0,00" />
+                    <span asp-validation-for="ValueEstimated" class="text-danger"></span>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3">
+                    <label asp-for="ValueProposal" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueProposal" value="@Model.ConvertDoubleToReal(Model.ValueProposal)" class="form-control money-mask" placeholder="R$ 0,00" />
+                    <span asp-validation-for="ValueProposal" class="text-danger"></span>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3">
+                    <label asp-for="ValueApproved" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueApproved" value="@Model.ConvertDoubleToReal(Model.ValueApproved)" class="form-control money-mask" placeholder="R$ 0,00" />
+                    <span asp-validation-for="ValueApproved" class="text-danger"></span>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3">
+                    <label asp-for="ValueSold" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueSold" value="@Model.ConvertDoubleToReal(Model.ValueSold)" class="form-control money-mask" placeholder="R$ 0,00" readonly />
+                    <span asp-validation-for="ValueSold" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row float-right">
+                <div class="col-12">
+                    <button type="submit" class="ui green button tiny">
+                        Gravar
+                        &nbsp;
+                        <i class="fas fa-save"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="ui modal tiny longer" id="myModal">
+    <div class="header">
+        Incluir Cliente
+    </div>
+    <div class="content">
+        <div id="myModalContent"></div>
+    </div>
+    <div class="actions">
+        <button class="ui black tiny deny button" id="btn-close-modal">
+            Cancelar
+        </button>
+        <button type="submit" class="ui green right labeled icon button tiny" form="form-customer">
+            Cadastrar
+            &nbsp;
+            <i class="checkmark icon"></i>
+        </button>
+    </div>
+</div>
+
+
+@section Scripts {
+    @*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
+
+    <script>
+
+        $(document).ready(function () {
+            bloqueiaCampoConcorrentes();
+            bloqueiaOpcoesStatus(false);
+
+
+            //Chamada da partial view de clientes
+            $(function () {
+                //$.ajaxSetup({ cache: false });
+
+                $("a[data-modal]").on("click",
+                    function (e) {
+                        $("#myModalContent").load(this.href,
+                            function () {
+                                $(".ui.modal").modal('show');
+                            });
+                        return false;
+                    });
+            });
+
+            $("#txtCustomer").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/clientes/buscar-clientes",
+                        type: "GET",
+                        cache: false,
+                        data: request,
+                        dataType: 'json',
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.name,
+                                    value: item.name,
+                                    id: item.id
+                                };
+                            }))
+                        }
+                    })
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#CustomerId').val(ui.item.id);
+                }
+            });
+
+        });
+
+        bloqueiaCampoConcorrentes = () => {
+            if ($('[name=Competition]').prop('checked') == true) {
+                $('[name=NameCompetitors]').removeAttr('disabled');
+            } else {
+                $('[name=NameCompetitors]').attr('disabled', 'disabled');
+                $('[name=NameCompetitors]').val('');
+            }
+        };
+
+        bloqueiaOpcoesStatus = (limpaConteudo) => {
+            let value = $("input[name='PhaseProspect']:checked").val();
+
+            if (limpaConteudo) {
+                $('#Status').val('');
+                $('#list_status').dropdown('clear');
+                $('[name=Temperature]').prop('checked', false);
+            }
+
+            bloqueiaOpcoesRazao(limpaConteudo);
+
+            switch (value) {
+                case "1":
+                    $('[name=Temperature]').attr('disabled', 'disabled');
+                    $('#row-temperature').addClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") !== "LEA"; }).addClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") === "LEA"; }).removeClass('d-none');
+                    break;
+                case "2":
+                    $('[name=Temperature]').attr('disabled', 'disabled');
+                    $('#row-temperature').addClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") !== "BRF" || $(this).attr("data-value") !== "NOG"; }).addClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") === "BRF" || $(this).attr("data-value") === "NOG"; }).removeClass('d-none');
+                    break;
+                case "3":
+                    $('[name=Temperature]').removeAttr('disabled');
+                    $('#row-temperature').removeClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") !== "PRO"; }).addClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") === "PRO"; }).removeClass('d-none');
+                    break;
+                case "4":
+                    $('[name=Temperature]').attr('disabled', 'disabled');
+                    $('#row-temperature').addClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") !== "WIN" || $(this).attr("data-value") !== "LOS" || $(this).attr("data-value") !== "CAN"; }).addClass('d-none');
+                    $('.opt-status').filter(function () { return $(this).attr("data-value") === "WIN" || $(this).attr("data-value") === "LOS" || $(this).attr("data-value") === "CAN"; }).removeClass('d-none');
+                    break;
+
+                default:
+                    $('#row-temperature').addClass('d-none');
+            }
+        }
+
+        bloqueiaOpcoesRazao = (limpaConteudo) => {
+            let value = $('#Status').val();
+
+            if (limpaConteudo) {
+                $('#ReasonText').val('');
+                $('.list_razoes').dropdown('clear');
+            }
+
+            switch (value) {
+                case "NOG":
+                    $('.row-razoes').removeClass('d-none');
+                    $('.div-razao').removeClass('d-none');
+                    $('.div-motivo').addClass('d-none');
+
+                    $('#ReasonText').removeAttr('disabled');
+                    $('.list_razoes').removeClass('disabled');
+
+                    $('.opt-nog').removeClass('d-none');
+                    $('.opt-aprov').addClass('d-none');
+                    break;
+                case "WIN":
+                    $('.row-razoes').removeClass('d-none');
+                    $('.div-razao').removeClass('d-none');
+                    $('.div-motivo').addClass('d-none');
+
+                    $('#ReasonText').removeAttr('disabled');
+                    $('.list_razoes').removeClass('disabled');
+
+                    $('.opt-nog').addClass('d-none');
+                    $('.opt-aprov').removeClass('d-none');
+                    break;
+                case "LOS":
+                    $('.row-razoes').removeClass('d-none');
+                    $('.div-razao').removeClass('d-none');
+                    $('.div-motivo').removeClass('d-none');
+
+                    $('#ReasonText').removeAttr('disabled');
+                    $('.list_razoes').removeClass('disabled');
+
+                    $('.opt-nog').addClass('d-none');
+                    $('.opt-aprov').removeClass('d-none');
+                    break;
+                case "CAN":
+                    $('.row-razoes').removeClass('d-none');
+                    $('.div-razao').addClass('d-none');
+                    $('.div-motivo').removeClass('d-none');
+
+                    $('#ReasonText').removeAttr('disabled');
+                    $('.list_razoes').removeClass('disabled');
+
+                    $('.opt-nog').addClass('d-none');
+                    $('.opt-aprov').removeClass('d-none');
+                    break;
+                default:
+                    $('#ReasonText').attr('disabled', 'disabled');
+                    $('.list_razoes').addClass('disabled');
+                    $('.row-razoes').addClass('d-none');
+                    $('.opt-nog').addClass('d-none');
+                    $('.opt-aprov').addClass('d-none');
+                    break;
+            }
+        }
+
+    </script>
+}

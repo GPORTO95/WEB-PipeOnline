@@ -1,0 +1,252 @@
+﻿@model Dev.App.ViewModels.ProspectViewModel
+
+@{
+    ViewData["Title"] = "Adicionar";
+}
+
+<div class="card mt-5">
+    <div class="card-header bg-white">
+        <h3>Formulário de criação</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            <vc:summary></vc:summary>
+            <!--Cadastro-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Cadastro</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label asp-for="Name" class="font-weight-bold control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label class="font-weight-bold control-label" asp-for="CategoryId"></label>
+                    <div class="ui selection dropdown form-control">
+                        <input type="hidden" asp-for="CategoryId" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Categories)
+                            {
+                                <div class="item" data-value="@item.Id">@item.Name</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-3 mt-sm-3 mt-3">
+                    <label asp-for="Type" class="font-weight-bold control-label"></label>
+                    <div class="ui selection dropdown form-control">
+                        <input type="hidden" asp-for="Type" />
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="item" data-value="1">Projeto</div>
+                            <div class="item" data-value="2">Recorrente</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                    <label asp-for="ProActive" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="ProActive" id="chkProActive1" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="chkProActive1">Sim</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="ProActive" id="chkProActive2" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="chkProActive2">Não</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="ProActive" class="text-danger"></span>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="International" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="International" id="chkIternacioinal1" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="chkIternacioinal1">Sim</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="International" id="chkIternacioinal2" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="chkIternacioinal2">Não</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="International" class="text-danger"></span>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-5 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="Competition" class="font-weight-bold control-label"></label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline mt-2">
+                        <input type="radio" asp-for="Competition" id="chkCompetition1" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="chkCompetition1">Sim</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" asp-for="Competition" id="chkCompetition2" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="chkCompetition2">Não</label>
+                    </div>
+                    <br />
+                    <span asp-validation-for="Competition" class="text-danger"></span>
+                </div>
+                <div class="col-lg-5 col-md-8 col-sm-8 col-7 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="NameCompetitors" class="font-weight-bold control-label"></label>
+                    <input asp-for="NameCompetitors" class="form-control" />
+                    <span asp-validation-for="NameCompetitors" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Fases-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Fase/Status/Razões</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <label asp-for="AutomaticPhase" class="font-weight-bold control-label"></label>
+                    <input asp-for="AutomaticPhase" class="form-control" disabled />
+                    <span asp-validation-for="AutomaticPhase" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="AutomaticStatus" class="font-weight-bold control-label"></label>
+                    <input asp-for="AutomaticStatus" class="form-control" disabled />
+                    <span asp-validation-for="AutomaticStatus" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Time-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Time</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="font-weight-bold control-label">Dono do projeto</div>
+                    <div class="ui selection dropdown mt-1 form-control">
+                        <input type="hidden" asp-for="EmployeeId" />
+                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Selecione</div>
+                        <div class="menu">
+                            <div class="ui icon search input">
+                                <input type="text" placeholder="Search tags...">
+                            </div>
+                            @foreach (var item in Model.Employees)
+                            {
+                                <div class="item" data-value="@item.Id">@item.Name</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                    <label asp-for="Interlocutor" class="font-weight-bold control-label"></label>
+                    <input asp-for="Interlocutor" class="form-control" />
+                    <span asp-validation-for="Interlocutor" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="Decision" class="font-weight-bold control-label"></label>
+                    <input asp-for="Decision" class="form-control" />
+                    <span asp-validation-for="Decision" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Datas-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Datas</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label asp-for="Opening" class="font-weight-bold control-label"></label>
+                    <input asp-for="Opening" class="form-control" />
+                    <span asp-validation-for="Opening" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="FirstBriefing" class="font-weight-bold control-label"></label>
+                    <input asp-for="FirstBriefing" class="form-control" />
+                    <span asp-validation-for="FirstBriefing" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="FirstProposal" class="font-weight-bold control-label"></label>
+                    <input asp-for="FirstProposal" class="form-control" />
+                    <span asp-validation-for="FirstProposal" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <label asp-for="ExpectedSale" class="font-weight-bold control-label"></label>
+                    <input asp-for="ExpectedSale" class="form-control" />
+                    <span asp-validation-for="ExpectedSale" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="DeliveryJob" class="font-weight-bold control-label"></label>
+                    <input asp-for="DeliveryJob" class="form-control date" />
+                    <span asp-validation-for="DeliveryJob" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-lg-0 mt-md-0 mt-sm-3 mt-3">
+                    <label asp-for="FirstSale" class="font-weight-bold control-label"></label>
+                    <input asp-for="FirstSale" class="form-control" />
+                    <span asp-validation-for="FirstSale" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <!--Valores-->
+            <div class="row mb-3">
+                <div class="col-12">
+                    <h3 class="card-title">Valores</h3>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <label asp-for="ValueEstimated" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueEstimated" class="form-control money" placeholder="R$ 0,00" />
+                    <span asp-validation-for="ValueEstimated" class="text-danger"></span>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3">
+                    <label asp-for="ValueProposal" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueProposal" class="form-control money" placeholder="R$ 0,00" />
+                    <span asp-validation-for="ValueProposal" class="text-danger"></span>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3">
+                    <label asp-for="ValueApproved" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueApproved" class="form-control money" placeholder="R$ 0,00" />
+                    <span asp-validation-for="ValueApproved" class="text-danger"></span>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-lg-0 mt-md-0 mt-sm-0 mt-3">
+                    <label asp-for="ValueSold" class="font-weight-bold control-label"></label>
+                    <input asp-for="ValueSold" class="form-control money" placeholder="R$ 0,00" />
+                    <span asp-validation-for="ValueSold" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row float-right">
+                <div class="col-12">
+                    <input type="submit" value="Submit" class="ui primary button tiny" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}

@@ -1,0 +1,36 @@
+﻿
+@if (ViewData.ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="alert-heading font-weight-bold mt-0">
+            <i class="fas fa-exclamation-triangle"></i> 
+            Atenção!
+        </h3>
+        <p id="msgRetorno">Existem campos obrigatórios a serem preenchidos.</p>
+        <hr>
+        <div asp-validation-summary="ModelOnly" class="mb-0"></div>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Sucesso))
+{
+    <div style="padding-top:15px"></div>
+
+    <div id="msg_box" class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <h3 id="msgRetorno">ViewBag.Sucesso</h3>
+    </div>
+}
+
+@if (TempData["Sucesso"] != null)
+{
+    <div id="msg_box" class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <h4 id="msgRetorno">@Html.Raw(TempData["Sucesso"]).ToString()</h4>
+    </div>
+}
+
+
