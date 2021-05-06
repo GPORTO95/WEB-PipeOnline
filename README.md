@@ -1,6 +1,5 @@
 ## :computer: Projeto WEB - PipeOnline
-Projeto criado em .NET Core versão 3.1 no back end e no front utilizo HTML5, CSS3, JQUERY e Razor.
-Pode paracer um CRUD simples mas garanto que não rss. O projeto faz o uso de dados graficos na tela inicial, múltiplos filtros, regras com base nos acessos do usuário.
+CRUD de Projeto e Cliente. O projeto faz o uso de dados graficos na tela inicial, múltiplos filtros, etc.
 
 ## :building_construction: Arquitetura 3 camadas
 - **Application**: Camada de apresentação
