@@ -19,6 +19,6 @@ CRUD de Projeto e Cliente. O projeto faz o uso de dados graficos na tela inicial
 - Semantic UI
 - CSS3
 - HTML5
-- Jquery
+- JQuery
 
 
