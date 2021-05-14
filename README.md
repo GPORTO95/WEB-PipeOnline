@@ -6,7 +6,7 @@ CRUD de Projeto e Cliente. O projeto faz o uso de dados graficos na tela inicial
 - **Customer**: Modelagem dos dados, regra de negócio, interface e serviços
 - **Data**: Toda camada de acesso a dados
 
-### :pushpin: Back-end
+## :pushpin: Back-end
 - Fluent Validation
 - Entity Framework Core 3.1
 - SQL Server
@@ -14,7 +14,7 @@ CRUD de Projeto e Cliente. O projeto faz o uso de dados graficos na tela inicial
 - AutoMapper
 - Repository
 
-### :pushpin: Front-end 
+## :pushpin: Front-end 
 - Bootstrap
 - Semantic UI
 - CSS3
