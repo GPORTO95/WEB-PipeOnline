@@ -1,38 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.App\\Dev.App.csproj": {}
+    "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.App\\Dev.App.csproj": {}
   },
   "projects": {
-    "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.App\\Dev.App.csproj": {
+    "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.App\\Dev.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.App\\Dev.App.csproj",
+        "projectUniqueName": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.App\\Dev.App.csproj",
         "projectName": "Dev.App",
-        "projectPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.App\\Dev.App.csproj",
-        "packagesPath": "C:\\Users\\gporto\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.App\\obj\\",
+        "projectPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.App\\Dev.App.csproj",
+        "packagesPath": "C:\\Users\\gr_po\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.App\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\gporto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gr_po\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj": {
-                "projectPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj"
+              "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj": {
+                "projectPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj"
               }
             }
           }
@@ -44,46 +41,46 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "KissLog.AspNetCore": {
               "target": "Package",
-              "version": "[4.0.0, )"
+              "version": "[5.1.2, )"
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[6.0.7, )"
             },
             "automapper.extensions.microsoft.dependencyinjection": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[12.0.0, )"
             }
           },
           "imports": [
@@ -104,36 +101,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {
+    "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
+        "projectUniqueName": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
         "projectName": "Dev.Business",
-        "projectPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
-        "packagesPath": "C:\\Users\\gporto\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\obj\\",
+        "projectPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
+        "packagesPath": "C:\\Users\\gr_po\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\gporto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gr_po\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -144,8 +138,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "FluentValidation": {
               "target": "Package",
@@ -167,39 +161,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj": {
+    "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj",
+        "projectUniqueName": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj",
         "projectName": "Dev.Data",
-        "projectPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj",
-        "packagesPath": "C:\\Users\\gporto\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Data\\obj\\",
+        "projectPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Data\\Dev.Data.csproj",
+        "packagesPath": "C:\\Users\\gr_po\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Data\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\gporto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gr_po\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {
-                "projectPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj"
+              "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {
+                "projectPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj"
               }
             }
           }
@@ -211,20 +202,26 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[6.0.7, )"
             }
           },
           "imports": [
@@ -242,7 +239,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

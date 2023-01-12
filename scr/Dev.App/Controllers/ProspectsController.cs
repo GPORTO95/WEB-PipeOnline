@@ -25,7 +25,7 @@ namespace Dev.App.Controllers
         private readonly ICompanyRepository _companyRepository;
         private readonly IProspectService _service;
         private readonly IMapper _mapper;
-        private readonly ILogger _logger;
+        //private readonly ILogger //_logger;
 
         public ProspectsController(
             IProspectRepository context,
@@ -36,7 +36,7 @@ namespace Dev.App.Controllers
             ISegmentRepository segmentRepository,
             ICompanyRepository companyRepository,
             IMapper mapper,
-            ILogger logger,
+            //ILogger logger,
             INotifier notificador) : base(notificador)
         {
             _context = context;
@@ -47,7 +47,7 @@ namespace Dev.App.Controllers
             _companyRepository = companyRepository;
             _service = service;
             _mapper = mapper;
-            _logger = logger;
+            ////_logger = logger;
         }
 
         // GET: Prospects
@@ -55,7 +55,7 @@ namespace Dev.App.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index(string mensagem)
         {
-            _logger.Debug("Listagem de projetos");
+            ////_logger.LogDebug("Listagem de projetos");
 
             if (!string.IsNullOrEmpty(mensagem))
                 ViewBag.Mensagem = mensagem;
@@ -78,7 +78,7 @@ namespace Dev.App.Controllers
         [HttpPost]
         public async Task<IActionResult> SearchProspects(ProspectListViewModel prospectViewModel)
         {
-            _logger.Debug("Listagem de projetos filtrados");
+            //_logger.LogDebug("Listagem de projetos filtrados");
 
             var lista = _mapper.Map<IEnumerable<ProspectViewModel>>(await _context.ObterTodos());
 
@@ -167,14 +167,14 @@ namespace Dev.App.Controllers
         //}
 
         // GET: Prospects/Create
-        [ClaimsAuthorize("Prospect", "Adicionar")]
+        //[ClaimsAuthorize("Prospect", "Adicionar")]
         [HttpGet]
         [Route("projeto")]
         public async Task<IActionResult> AddOrEdit(Guid id)
         {
             if (id == null || id == Guid.Empty)
             {
-                _logger.Debug("Pagina de novo projeto");
+                //_logger.LogDebug("Pagina de novo projeto");
 
                 var prospectViewModel = await PopularListas(new ProspectViewModel());
                 
@@ -182,7 +182,7 @@ namespace Dev.App.Controllers
             }
             else
             {
-                _logger.Debug("Pagina de edição projeto");
+                //_logger.LogDebug("Pagina de edição projeto");
 
                 var prospectViewModel = _mapper.Map<ProspectViewModel>(await _context.ObterPorId(id));
 
@@ -196,7 +196,7 @@ namespace Dev.App.Controllers
             }
         }
 
-        [ClaimsAuthorize("Prospect", "Adicionar")]
+        //[ClaimsAuthorize("Prospect", "Adicionar")]
         [HttpPost]
         [Route("projeto")]
         [ValidateAntiForgeryToken]
@@ -207,7 +207,7 @@ namespace Dev.App.Controllers
 
             if (!ModelState.IsValid)
             {
-                _logger.Warn("Erro no estado da model");
+                //_logger.LogWarning("Erro no estado da model");
 
                 prospectViewModel.Customer = new CustomerViewModel();
 
@@ -230,7 +230,7 @@ namespace Dev.App.Controllers
 
                 if (!OperacaoValida())
                 {
-                    _logger.Warn("Erro na validação da regra negocio");
+                    //_logger.LogWarning("Erro na validação da regra negocio");
 
                     return View(prospectViewModel);
                 }
@@ -239,7 +239,7 @@ namespace Dev.App.Controllers
 
                 mensagem = $"Projeto {idPsp} criado com sucesso!";
 
-                _logger.Info(mensagem);
+                //_logger.LogInformation(mensagem);
             }
             else
             {
@@ -247,21 +247,21 @@ namespace Dev.App.Controllers
 
                 if (!OperacaoValida())
                 {
-                    _logger.Warn("Erro na validação da regra negocio");
+                    //_logger.LogWarning("Erro na validação da regra negocio");
 
                     return View(prospectViewModel);
                 }
 
                 mensagem = $"Projeto {prospect.IdPsp} editado com sucesso!";
 
-                _logger.Info(mensagem);
+                //_logger.LogInformation(mensagem);
             }
 
             return RedirectToAction(nameof(Index), new { mensagem });
         }
 
 
-        [ClaimsAuthorize("Prospect", "Excluir")]
+        //[ClaimsAuthorize("Prospect", "Excluir")]
         [HttpPost]
         [Route("excluir-projeto/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)

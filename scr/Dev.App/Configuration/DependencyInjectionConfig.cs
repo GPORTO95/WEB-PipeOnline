@@ -31,10 +31,10 @@ namespace Dev.App.Configuration
             services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ILogger>((context) =>
-            {
-                return Logger.Factory.Get();
-            });
+            //services.AddScoped<ILogger>((context) =>
+            //{
+            //    return Logger.Factory.Get();
+            //});
 
             return services;
         }

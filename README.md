@@ -8,7 +8,7 @@ CRUD de Projeto e Cliente. O projeto faz o uso de dados graficos na tela inicial
 
 ## :pushpin: Back-end
 - Fluent Validation
-- Entity Framework Core 3.1
+- Entity Framework Core 5
 - SQL Server
 - Fluent API
 - AutoMapper
@@ -20,5 +20,3 @@ CRUD de Projeto e Cliente. O projeto faz o uso de dados graficos na tela inicial
 - CSS3
 - HTML5
 - JQuery
-
-

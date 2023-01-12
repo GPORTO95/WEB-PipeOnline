@@ -1,9 +1,0 @@
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\bin\Debug\netcoreapp3.1\Dev.Business.deps.json
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\bin\Debug\netcoreapp3.1\Dev.Business.dll
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\bin\Debug\netcoreapp3.1\Dev.Business.pdb
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\obj\Debug\netcoreapp3.1\Dev.Business.csprojAssemblyReference.cache
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\obj\Debug\netcoreapp3.1\Dev.Business.AssemblyInfoInputs.cache
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\obj\Debug\netcoreapp3.1\Dev.Business.AssemblyInfo.cs
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\obj\Debug\netcoreapp3.1\Dev.Business.dll
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\obj\Debug\netcoreapp3.1\Dev.Business.pdb
-C:\Dev - Testes\App.PipeOnline\scr\Dev.Business\obj\Debug\netcoreapp3.1\Dev.Business.csproj.CoreCompileInputs.cache

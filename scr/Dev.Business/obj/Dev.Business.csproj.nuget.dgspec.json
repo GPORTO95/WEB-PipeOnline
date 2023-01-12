@@ -1,35 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {}
+    "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {}
   },
   "projects": {
-    "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {
+    "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
+        "projectUniqueName": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
         "projectName": "Dev.Business",
-        "projectPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
-        "packagesPath": "C:\\Users\\gporto\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev - Testes\\App.PipeOnline\\scr\\Dev.Business\\obj\\",
+        "projectPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\Dev.Business.csproj",
+        "packagesPath": "C:\\Users\\gr_po\\.nuget\\packages\\",
+        "outputPath": "C:\\Repositorios\\Web\\WEB-PipeOnline\\scr\\Dev.Business\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\gporto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gr_po\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -40,8 +37,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "FluentValidation": {
               "target": "Package",
@@ -63,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
